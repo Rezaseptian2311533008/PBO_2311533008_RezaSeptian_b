@@ -14,7 +14,7 @@ public String getNama() {
 
 }
 public void setNama(String nama) {
-	this.getNama();
+	this.nama = nama;
 }
 public String getUsername() {
 	return username;
