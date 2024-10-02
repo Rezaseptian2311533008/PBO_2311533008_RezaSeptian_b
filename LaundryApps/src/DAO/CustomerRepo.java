@@ -58,7 +58,7 @@ public class CustomerRepo implements CustomerDAO{
 				while(rs.next()) {
 					Customer customer = new Customer();
 					customer.setId(rs.getString("id"));
-					customer.setNama(rs.getString("name"));
+					customer.setNama(rs.getString("nama"));
 					customer.setAlamat(rs.getString("alamat"));
 					customer.setnoHP(rs.getString("noHP"));
 					ls.add(customer);

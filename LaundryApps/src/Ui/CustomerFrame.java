@@ -41,6 +41,7 @@ public class CustomerFrame extends JFrame {
 				try {
 					CustomerFrame frame = new CustomerFrame();
 					frame.setVisible(true);
+					frame.loadTable();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -113,7 +114,7 @@ public class CustomerFrame extends JFrame {
 				customer.setAlamat(txtAlamat.getText());
 				customer.setNoHP(txtNoHP.getText());
 				customer.setId(id);
-				cst.update(customer);
+				cst.save(customer);
 				reset();
 				loadTable();
 			}
@@ -137,6 +138,10 @@ public class CustomerFrame extends JFrame {
 		tableCustomer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				id = tableCustomer.getValueAt(tableCustomer.getSelectedRow(),0).toString();
+				txtNama.setText(tableCustomer.getValueAt(tableCustomer.getSelectedRow(),1).toString());
+				txtAlamat.setText(tableCustomer.getValueAt(tableCustomer.getSelectedRow(),2).toString());
+				txtNoHP.setText(tableCustomer.getValueAt(tableCustomer.getSelectedRow(),3).toString());
 			}
 		});
 		tableCustomer.setBounds(49, 185, 359, 202);

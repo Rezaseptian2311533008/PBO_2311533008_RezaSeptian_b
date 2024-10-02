@@ -16,13 +16,13 @@ public class TableCustomer extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 
-		return 0;
+		return ls.size();
 	}
 
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 3;
 	}
 	public String getColumnName(int column) {
 		return columnNames[column];
@@ -35,7 +35,7 @@ public class TableCustomer extends AbstractTableModel {
 			return ls.get(rowIndex).getId();
 		case 1:
 			return ls.get(rowIndex).getNama();
-		case 3:
+		case 2:
 			return ls.get(rowIndex).getAlamat();
 		default:
 		return null;
