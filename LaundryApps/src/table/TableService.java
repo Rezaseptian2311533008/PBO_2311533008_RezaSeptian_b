@@ -5,48 +5,44 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import Model.Service;
+import Model.User;
 
 public class TableService extends AbstractTableModel {
-	private List<Service> list;
-	private final String[] columns = {"ID", "Jenis", "Status", "Harga"};
-	
-	public TableService(List<Service> list) {
-		this.list = list;
+	List<Service> ls;
+	private String[] columnNames = {"ID", "Jenis", "Harga", "Status"};
+	public TableService(List <Service> ls) {
+		this.ls = ls;
 	}
+	
 	@Override
 	public int getRowCount() {
-		return list.size();
+		// TODO Auto-generated method stub
+		return ls.size();
 	}
 	@Override
 	public int getColumnCount() {
-		return columns.length;
+		// TODO Auto-generated method stub
+		return 4;
 	}
-	@Override
 	public String getColumnName (int column) {
-		return columns[column];
-	
+		// TODO Auto-generated method stub
+		return columnNames[column];
 	}
-	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Service service = list.get(rowIndex);
+		// TODO Auto-generated method stub
 		switch (columnIndex) {
 		case 0:
-			return service.getId();
-		case 1:
-			return service.getJenis();
-		case 2:
-			return service.getStatus();
-		case 3:
-			return service.getHarga();
-			default:
-
-		}
+			return ls.get(rowIndex).getId();
+		case 1 :
+			return ls.get(rowIndex).getJenis();
+		case 2 :
+			return ls.get(rowIndex).getHarga();
+		case 3 :
+			return ls.get(rowIndex).getStatus();
+		default :
 		return null;
+		}		
 	}
 
-public void setList(List<Service> list) {
-	this.list = list;
-	fireTableDataChanged();
-}
 }

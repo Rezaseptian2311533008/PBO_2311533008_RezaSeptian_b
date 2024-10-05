@@ -60,7 +60,7 @@ public class CustomerRepo implements CustomerDAO{
 					customer.setId(rs.getString("id"));
 					customer.setNama(rs.getString("nama"));
 					customer.setAlamat(rs.getString("alamat"));
-					customer.setnoHP(rs.getString("noHP"));
+					customer.setNoHP(rs.getString("noHP"));
 					ls.add(customer);
 				}
 			}catch(SQLException e) {

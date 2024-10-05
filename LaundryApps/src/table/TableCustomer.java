@@ -9,7 +9,7 @@ import Model.Customer;
 
 public class TableCustomer extends AbstractTableModel {
 	List <Customer> ls;
-	private String[] columnNames = {"ID", "Nama", "Alamat", "noHP"};
+	private String[] columnNames = {"ID", "Nama", "Alamat", "NoHP"};
 	public TableCustomer (List <Customer> ls) {
 		this.ls = ls;
 	}
@@ -22,7 +22,7 @@ public class TableCustomer extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 4;
 	}
 	public String getColumnName(int column) {
 		return columnNames[column];
@@ -37,6 +37,8 @@ public class TableCustomer extends AbstractTableModel {
 			return ls.get(rowIndex).getNama();
 		case 2:
 			return ls.get(rowIndex).getAlamat();
+		case 3:
+			return ls.get(rowIndex).getnoHP();
 		default:
 		return null;
 			
