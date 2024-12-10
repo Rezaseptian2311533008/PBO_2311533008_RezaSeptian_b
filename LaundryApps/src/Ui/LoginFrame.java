@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Model.User;
+import error.ValidationException;
+import service.LoginService;
+import util.ValidationUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -87,17 +90,35 @@ public class LoginFrame extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (User.login(txtUsername.getText(), txtPassword.getText())) {
-					new JFrame(). setVisible(true);
-					dispose();
-					
-					}else{
-						JOptionPane.showMessageDialog(null, "Login Gagal");
+				String userValue = txtUsername.getText();
+				String passValue = txtPassword.getText();
+				
+				User user = new User(userValue, passValue);
+
+				try {
+					ValidationUtil.validate(user);
+					LoginService loginService = new LoginService();
+					if(loginService.authenticate(user)) {
+						System.out.println("Login successful!");
+						new MainFrame().setVisible(true);
+						dispose();
+				
+					}else {
+					System.out.println("Invalid username or password.");
+					JOptionPane. showMessageDialog(null, "Login Gagal, Invalid username or password.");
+					}
+				} catch (ValidationException | NullPointerException exception) {
+					System.out.println("Data tidak valid : " + exception.getMessage());
+					JOptionPane. showMessageDialog(null, "Login Gagal: "+ exception.getMessage());
+				} finally {
+					System.out.println("Selalu di eksekusi");
+
 					}
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnLogin.setBounds(45, 327, 354, 36);
-		contentPane.add(btnLogin);
+		contentPane.add(btnLogin); 
+		}
 	}
-}
+

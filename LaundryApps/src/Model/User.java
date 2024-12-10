@@ -3,6 +3,15 @@ package Model;
 public class User {
 String id,nama,username,password;
 
+public User(String uname, String pass) {
+	this.username = uname;
+	this.password = pass;
+}
+
+public User() {
+	// TODO Auto-generated constructor stub
+}
+
 public String getId() {
 	return id;
 }
