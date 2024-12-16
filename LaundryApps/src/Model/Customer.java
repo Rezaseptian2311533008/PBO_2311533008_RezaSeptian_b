@@ -1,51 +1,66 @@
 package Model;
 
 public class Customer {
-	
-	String id, nama, alamat, noHP;
+    private String id;
+    private String nama;
+    private String email;
+    private String alamat;
+    private String hp;
 
-	public Customer() {
+    public Customer(String id, String nama, String email, String alamat, String hp) {
+        this.id = id;
+        this.nama = nama;
+        this.email = email;
+        this.alamat = alamat;
+        this.hp = hp;
+    }
+
+    public Customer() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getNama() {
+        return nama;
+    }
 
-	public String getNama() {
-		return nama;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setNama(String nama) {
-		this.nama = nama;
-	}
+    public String getAlamat() {
+        return alamat;
+    }
 
-	public String getAlamat() {
-		return alamat;
-	}
-
-	public void setAlamat(String alamat) {
-		this.alamat = alamat;
-	}
+    public String getHp() {
+        return hp;
+    }
 
 	public String getnoHP() {
-		return noHP;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setNoHP(String noHP) {
-		this.noHP = noHP;
-	}
-
-	public void setnoHP(String string) {
+	public void setId(String string) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	
-	
-	
+	public void setNama(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	public void setAlamat(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setNoHP(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }

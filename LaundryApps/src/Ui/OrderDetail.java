@@ -204,4 +204,24 @@ public class OrderDetail extends JFrame {
 		lblNewLabel_12.setBounds(36, 449, 245, 45);
 		contentPane.add(lblNewLabel_12);
 	}
+
+	public String getIdOrderDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getIdLayanan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getJumlah() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

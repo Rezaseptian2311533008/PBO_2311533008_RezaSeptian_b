@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import config.Database;
 import Model.Customer;
+import Model.CustomerBuilder;
 
 public class CustomerRepo implements CustomerDAO{
 	
@@ -26,22 +27,22 @@ public class CustomerRepo implements CustomerDAO{
 		}
 
 		@Override
-		public void save(Customer customer) {
-			// TODO Auto-generated method stub
+		public void save(Customer cs) {
 			PreparedStatement st = null;
 			try {
-				st = connection.prepareStatement(insert);
-				st.setString(1, customer.getNama());
-				st.setString(2, customer.getAlamat());
-			st.setString(3, customer.getnoHP());
-				st.executeUpdate();
-			}catch(SQLException e){
-				e.printStackTrace();
-			}finally {
-				try {
-					st.close();
-				}catch(SQLException e) {
-					e.printStackTrace();
+			st = connection.prepareStatement(insert);
+			st.setString(1, cs.getNama());
+			st.setString(2, cs.getEmail());
+			st.setString(3, cs.getAlamat());
+			st.setString(4, cs.getHp());
+			st. executeUpdate();
+			} catch (SQLException e) {
+			e.printStackTrace();
+			} finally {
+			try {
+			st.close();
+			}catch(SQLException e) {
+			e.printStackTrace();
 				}
 			}
 			
@@ -50,23 +51,27 @@ public class CustomerRepo implements CustomerDAO{
 		@Override
 		public List<Customer> show() {
 			// TODO Auto-generated method stub
-			List<Customer> ls=null;
+			List<Customer> ls = null;
 			try {
-				ls = new ArrayList<Customer>();
-				Statement st = connection.createStatement();
-				ResultSet rs = st.executeQuery(select);
-				while(rs.next()) {
-					Customer customer = new Customer();
-					customer.setId(rs.getString("id"));
-					customer.setNama(rs.getString("nama"));
-					customer.setAlamat(rs.getString("alamat"));
-					customer.setNoHP(rs.getString("noHP"));
-					ls.add(customer);
-				}
-			}catch(SQLException e) {
-				Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, e);
+			ls = new ArrayList<Customer>();
+			Statement st = connection.createStatement();
+			ResultSet rs = st.executeQuery(select) ;
+			while(rs.next()) {
+				Customer cs = new CustomerBuilder()
+					.setId(rs.getString("id"))
+					.setNama(rs.getString("nama"))
+					.setEmail(rs.getString("email"))
+					.setAlamat(rs.getString("alamat"))
+					.setHp(rs.getString("hp"))
+					.build();
+					ls.add(cs);
+			}
+			} catch (SQLException e) {
+			// TODO: handle exception
+			Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, e);
 			}
 			return ls;
+
 		}
 
 		@Override
@@ -100,7 +105,7 @@ public class CustomerRepo implements CustomerDAO{
 				st = connection.prepareStatement(update);
 				st.setString(1, customer.getNama());
 				st.setString(2, customer.getAlamat());
-				st.setString(3, customer.getnoHP());
+				st.setString(3, customer.getHp());
 				st.setString(4, customer.getId());
 				st.executeUpdate();
 			}catch(SQLException e) {

@@ -25,47 +25,47 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class CustomerFrame extends JFrame {
+private static final long serialVersionUID = 1L;
+private JPanel contentPane;
+private JTextField txtCustomerName;
+private JTextField txtCustomerAddress;
+private JTextField txtCustomerPhone;
+private JTextField txtCustomerEmail;
+private JTable tableCustomers;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtNama;
-	private JTextField txtAlamat;
-	private JTextField txtNoHP;
-	private JTable tableCustomer;
+public String id;
+List<Customer> ls;
+CustomerRepo customerRepo = new CustomerRepo();
+private JTextField txtAlamat;
+private JTextField txtNoHP;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerFrame frame = new CustomerFrame();
-					frame.setVisible(true);
-					frame.loadTable();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	CustomerRepo cst = new CustomerRepo();
-	List<Customer> ls;
-	public String id;
-	
-	public void loadTable() {
-		ls = cst.show();
-		TableCustomer tu = new TableCustomer(ls);
-		tableCustomer.setModel(tu);
-		tableCustomer.getTableHeader().setVisible(true);
-	}
 
-	
-	public void reset() {
-		txtNama.setText("");
-		txtAlamat.setText("");
-		txtNoHP.setText("");
+public static void main(String[] args) {
+ EventQueue.invokeLater(new Runnable() {
+	 public void run() {
+		try {
+		CustomerFrame frame = new CustomerFrame();
+		frame.setVisible(true);
+		frame.loadTable();
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+	 }
+ });
+}
+public void loadTable() {
+ls = customerRepo.show();
+TableCustomer tc = new TableCustomer(ls);
+tableCustomers.setModel(tc);
+tableCustomers.getTableHeader().setVisible(true);
+
+}
+
+public void reset() {
+txtCustomerName.setText("");
+txtCustomerAddress.setText("");
+txtCustomerPhone.setText("");
+txtCustomerEmail.setText("");
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class CustomerFrame extends JFrame {
 		lblNama.setBounds(49, 45, 46, 14);
 		contentPane.add(lblNama);
 		
-		txtNama = new JTextField();
+		JTextField txtNama = new JTextField();
 		txtNama.setColumns(10);
 		txtNama.setBounds(105, 42, 295, 20);
 		contentPane.add(txtNama);
@@ -115,7 +115,7 @@ public class CustomerFrame extends JFrame {
 				customer.setAlamat(txtAlamat.getText());
 				customer.setNoHP(txtNoHP.getText());
 				customer.setId(id);
-				cst.save(customer);
+				customerRepo.save(customer);
 				reset();
 				loadTable();
 			}
@@ -132,7 +132,7 @@ public class CustomerFrame extends JFrame {
 					costumer.setAlamat(txtAlamat.getText());
 					costumer.setNoHP(txtNoHP.getText());
 					costumer.setId(id);
-					cst.update(costumer);
+					customerRepo.update(costumer);
 					reset();
 					loadTable();
 				}
@@ -144,6 +144,8 @@ public class CustomerFrame extends JFrame {
 		
 		JButton btnSave = new JButton("Delete");
 		btnSave.addActionListener(new ActionListener() {
+			private CustomerRepo cst;
+
 			public void actionPerformed(ActionEvent e) {
 				if(id != null) {
 					cst.delete(id);
@@ -165,17 +167,17 @@ public class CustomerFrame extends JFrame {
 		btnCancel.setBounds(331, 148, 76, 23);
 		contentPane.add(btnCancel);
 		
-		tableCustomer = new JTable();
-		tableCustomer.addMouseListener(new MouseAdapter() {
+		tableCustomers = new JTable();
+		tableCustomers.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				id = tableCustomer.getValueAt(tableCustomer.getSelectedRow(),0).toString();
-				txtNama.setText(tableCustomer.getValueAt(tableCustomer.getSelectedRow(),1).toString());
-				txtAlamat.setText(tableCustomer.getValueAt(tableCustomer.getSelectedRow(),2).toString());
-				txtNoHP.setText(tableCustomer.getValueAt(tableCustomer.getSelectedRow(),3).toString());
+				id = tableCustomers.getValueAt(tableCustomers.getSelectedRow(),0).toString();
+				txtNama.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),1).toString());
+				txtAlamat.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),2).toString());
+				txtNoHP.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),3).toString());
 			}
 		});
-		tableCustomer.setBounds(49, 185, 359, 202);
-		contentPane.add(tableCustomer);
+		tableCustomers.setBounds(49, 185, 359, 202);
+		contentPane.add(tableCustomers);
 	}
 }

@@ -1,13 +1,13 @@
 package DAO;
 
+import Model.Customer;
 import java.util.List;
-
 import Model.Customer;
 
 public interface CustomerDAO {
-	void save(Customer customer);
+	public void save(Customer cs);
 	public List<Customer> show();
 	public void delete (String id);
-	public void update (Customer customer);
+	public void update (Customer cs);
 	
 }
