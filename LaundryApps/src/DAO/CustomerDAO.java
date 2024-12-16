@@ -2,7 +2,6 @@ package DAO;
 
 import Model.Customer;
 import java.util.List;
-import Model.Customer;
 
 public interface CustomerDAO {
 	public void save(Customer cs);

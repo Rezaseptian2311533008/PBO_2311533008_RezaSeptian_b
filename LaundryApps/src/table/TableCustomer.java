@@ -32,17 +32,17 @@ return columnNames[column];
 public Object getValueAt(int rowIndex, int columnIndex) {
 switch (columnIndex) {
 case 0:
-return ls.get(rowIndex).getId();
+	return ls.get(rowIndex).getId();
 case 1:
-return ls.get(rowIndex).getNama();
+	return ls.get(rowIndex).getNama();
 case 2:
-return ls.get(rowIndex).getEmail();
+	return ls.get(rowIndex).getEmail();
 case 3:
-return ls.get(rowIndex).getAlamat();
+	return ls.get(rowIndex).getAlamat();
 case 4:
-return ls.get(rowIndex).getHp();
+	return ls.get(rowIndex).getHp();
 default:
-return null;
+	return null;
 }
 }
 }
